@@ -22,7 +22,6 @@ class CliviaGenerator
     File.open(@filename, "w") unless File.exist?(@filename)
     jsonstring = File.read(@filename)
     @report = jsonstring.empty? ? [] : JSON.parse(jsonstring)
-   
   end
 
   def start
@@ -48,7 +47,7 @@ class CliviaGenerator
       category = @decoder.decode(questions[:category])
       difficulty = @decoder.decode(questions[:difficulty])
       puts "Category: #{category.colorize(:yellow)} | Difficulty: #{difficulty.colorize(:yellow)}"
-      
+
       ask_questions(questions)
       puts ""
     end
@@ -109,9 +108,8 @@ class CliviaGenerator
     report_sorted = @report.sort { |x, y| y["score"] <=> x["score"] }.map { |unit| [unit["name"], unit["score"]] }
     report_fifth = []
     report_sorted.each_with_index { |e, index| (report_fifth << e if index < 5) }
-    table.rows = report_fifth.map { |row| row.map { |cell| cell.to_s.colorize(:yellow) } } 
+    table.rows = report_fifth.map { |row| row.map { |cell| cell.to_s.colorize(:yellow) } }
     puts table.to_s.colorize(:yellow)  # Aplicar color azul a toda la tabla
     puts ""
   end
 end
-
