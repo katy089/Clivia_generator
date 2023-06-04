@@ -13,8 +13,9 @@ class CliviaGenerator
   include Presenter
   include Requester
 
+  # we need to initialize a couple of properties here
   def initialize(filename)
-    # we need to initialize a couple of properties here
+  
     @questions = []
     @decoder = HTMLEntities.new
     @score = 0
