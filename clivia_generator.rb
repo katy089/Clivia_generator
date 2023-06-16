@@ -14,6 +14,7 @@ class CliviaGenerator
   include Requester
 
   # we need to initialize a couple of properties here
+  # Método 1
   def initialize(filename)
   
     @questions = []
@@ -25,6 +26,7 @@ class CliviaGenerator
     @report = jsonstring.empty? ? [] : JSON.parse(jsonstring)
   end
 
+    # Método 2
   def start
     # welcome message
     print_welcome
@@ -40,6 +42,8 @@ class CliviaGenerator
       action = select_main_menu_action
     end
   end
+
+    # Método 3
 
   def random_clivia
     # load the questions from the api
@@ -58,6 +62,7 @@ class CliviaGenerator
     puts ""
   end
 
+    # Método 4
   def ask_questions(questions)
     # ask each question
     correct_index = 0
@@ -75,6 +80,7 @@ class CliviaGenerator
     ask_questions_refactorizing(selection, correct_index, selected_alternative, questions)
   end
 
+    # Método 5
   def ask_questions_refactorizing(selection, correct_index, selected_alternative, questions)
     # if response is correct, put a correct message and increase score
     if selection == correct_index
@@ -87,6 +93,7 @@ class CliviaGenerator
     end
   end
 
+    # Método 6
   def save(data)
     # write to file the scores data
     @report << data
@@ -95,11 +102,13 @@ class CliviaGenerator
     puts "Scores saved!".colorize(:green)
   end
 
+     # Método 7
   def load_questions
     # ask the api for a random set of questions and parse it
     @questions = CliviaAPI.index[:results]
   end
 
+     # Método 8
   def print_scores
     jsonstring = File.read(@filename)
     @report = jsonstring.empty? ? [] : JSON.parse(jsonstring)
